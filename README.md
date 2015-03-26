@@ -30,10 +30,10 @@ A libary/parser for reading .obj files in Java.
 | Connectivity between free-form surfaces |||
 | (con) connect |||
 | Grouping |||
-| (g) group name |||
+| (g) group name | X ||
 | (s) smoothing group |||
 | (mg) merging group |||
-| (o) object name |||
+| (o) object name | X ||
 | Display/render attributes |||
 | (bevel) bevel interpolation |||
 | (c_interp) color interpolation |||
