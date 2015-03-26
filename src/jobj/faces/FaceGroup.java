@@ -13,4 +13,8 @@ public class FaceGroup {
 	public void addFace (Face face){
 		faceList.add(face);
 	}
+	
+	public ArrayList<Face> getFaceList(){
+		return this.faceList;
+	}
 }
