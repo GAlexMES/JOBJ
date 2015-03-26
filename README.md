@@ -5,7 +5,7 @@ A libary/parser for reading .obj files in Java.
 # Support
 | Feature | Support (parsing) | Support (rendering)
 | :------ | :-----: | :-----: |
-| Vertex data | | |
+| Vertex data |
 | (v) geometric vertices |  X | |
 | (vt) texture vertices | | |
 | (vn) vertex normals | | |
@@ -13,28 +13,28 @@ A libary/parser for reading .obj files in Java.
 | (deg) degree |||
 | (bmat) basis matrix |||
 | (step) step size |||
-| Elements |||
+| Elements |
 | (p) point |||
 | (l) line |||
 | (f) face | X ||
 | (curv) curve |||
 | (curv2) 2D curve |||
 | (surf) surface |||
-| Free-form curve/surface body statements |||
+| Free-form curve/surface body statements |
 | (parm) parameter values |||
 | (trim) outer trimming loop |||
 | (hole) inner trimming loop |||
 | (scrv) special curve |||
 | (sp) special point |||
 | (end) end statement |||
-| Connectivity between free-form surfaces |||
+| Connectivity between free-form surfaces |
 | (con) connect |||
-| Grouping |||
+| Grouping |
 | (g) group name | X ||
 | (s) smoothing group |||
 | (mg) merging group |||
 | (o) object name | X ||
-| Display/render attributes |||
+| Display/render attributes |
 | (bevel) bevel interpolation |||
 | (c_interp) color interpolation |||
 | (d_interp) dissolve interpolation |||
