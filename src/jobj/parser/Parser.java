@@ -10,11 +10,14 @@ import jobj.comments.Comments;
 import jobj.faces.Face;
 import jobj.faces.FaceGroup;
 import jobj.jobj.JObj;
+import jobj.jobj.Object;
 import jobj.vertex.Vertex;
 import jobj.vertex.Verticies;
+import jobj.jobj.*;
 
 /**
- * <h1> Main Parsing Class </h1>
+ * <h1>Main Parsing Class</h1>
+ * 
  * @author Alexander Brennecke
  *
  */
@@ -25,6 +28,7 @@ public class Parser {
 	private Verticies tempVerticies;
 	private FaceGroup tempFaceGroup;
 	private Comments tempComments;
+	private Object tempObject;
 	private int tempSmoothinGroup;
 
 	public Parser() {
@@ -40,6 +44,7 @@ public class Parser {
 		jobj = new JObj();
 		tempVerticies = new Verticies();
 		tempComments = new Comments();
+		tempObject = new Object();
 		tempSmoothinGroup = 0;
 		parse();
 	}
@@ -59,7 +64,8 @@ public class Parser {
 			e.printStackTrace();
 		}
 		jobj.setVerticies(tempVerticies);
-		jobj.addFaceGroup(tempFaceGroup);
+		tempObject.addFaceGroup(tempFaceGroup);
+		jobj.addObject(tempObject);
 	}
 
 	private void handleLine(String line) {
@@ -89,6 +95,9 @@ public class Parser {
 		case "s":
 			newSmoothingGroup(splittedLine);
 			break;
+		case "0":
+			newObject(splittedLine);
+			break;
 		case "#":
 			newComment(line);
 			break;
@@ -106,6 +115,22 @@ public class Parser {
 			System.err.println("Parsing Error: Unknown Element tag: " + elementTag);
 			break;
 		}
+	}
+
+	private void newObject(String[] line) {
+		jobj.addObject(tempObject);
+		tempObject = new Object();
+
+		String objectName = "";
+		if (line.length > 1) {
+			for (int i = 1; i < line.length; i++) {
+				objectName = objectName + " " + line[i];
+			}
+		}
+		else{
+			objectName = "Unnamed";
+		}
+		tempObject.setName(objectName);
 	}
 
 	private void newMTLUse(String[] line) {
@@ -145,7 +170,7 @@ public class Parser {
 	private void newGroup(String[] line) {
 		if (tempFaceGroup != null) {
 			if (tempFaceGroup.getFaceList().size() > 0) {
-				jobj.addFaceGroup(tempFaceGroup);
+				tempObject.addFaceGroup(tempFaceGroup);
 			}
 		}
 
@@ -165,10 +190,9 @@ public class Parser {
 	private void newFace(String[] line) {
 		Face newFace = new Face();
 		for (int i = 1; i < line.length; i++) {
-			try{
+			try {
 				newFace.addVertex(Integer.valueOf(line[i]));
-			}
-			catch(NumberFormatException nfe){
+			} catch (NumberFormatException nfe) {
 				newFace.addVertex(line[i]);
 			}
 		}

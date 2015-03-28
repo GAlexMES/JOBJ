@@ -2,7 +2,7 @@ package jobj.jobj;
 
 import java.util.ArrayList;
 
-import jobj.faces.FaceGroup;
+import jobj.jobj.Object;
 import jobj.vertex.Verticies;
 
 public class JObj {
@@ -10,19 +10,19 @@ public class JObj {
 	private Verticies verticies;
 	private String mtllibFilePaht = "";
 	
-	ArrayList<FaceGroup> faceGroups;
+	ArrayList<Object> objectList;
 	
 	public JObj(){
 		verticies = new Verticies();
-		faceGroups = new ArrayList<>();
+		objectList = new ArrayList<>();
 	}
 	
 	public void setVerticies(Verticies verticies){
 		this.verticies = verticies;
 	}
 	
-	public void addFaceGroup(FaceGroup faceGroup){
-		faceGroups.add(faceGroup);
+	public void addObject(Object object){
+		objectList.add(object);
 	}
 	
 	public void setMTLLibFilePath(String filePath){
