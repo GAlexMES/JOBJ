@@ -8,6 +8,8 @@ import jobj.vertex.Verticies;
 public class JObj {
 
 	private Verticies verticies;
+	private String mtllibFilePaht = "";
+	
 	ArrayList<FaceGroup> faceGroups;
 	
 	public JObj(){
@@ -21,5 +23,9 @@ public class JObj {
 	
 	public void addFaceGroup(FaceGroup faceGroup){
 		faceGroups.add(faceGroup);
+	}
+	
+	public void setMTLLibFilePath(String filePath){
+		this.mtllibFilePaht=filePath;
 	}
 }
