@@ -9,7 +9,7 @@ A libary/parser for reading .obj files in Java.
 | (v) geometric vertices |  X | |
 | (vt) texture vertices | | |
 | (vn) vertex normals | | |
-| (vp) parameter space vertices (vp) |||
+| (vp) parameter space vertices |||
 | (deg) degree |||
 | (bmat) basis matrix |||
 | (step) step size |||
@@ -31,19 +31,21 @@ A libary/parser for reading .obj files in Java.
 | (con) connect |||
 | Grouping |
 | (g) group name | X ||
-| (s) smoothing group |||
+| (s) smoothing group | X ||
 | (mg) merging group |||
-| (o) object name | X ||
+| (o) object name |  ||
 | Display/render attributes |
 | (bevel) bevel interpolation |||
 | (c_interp) color interpolation |||
 | (d_interp) dissolve interpolation |||
 | (lod) level of detail |||
-| (usemtl) material name |||
-| (mtllib) material libary |||
+| (usemtl) material name | X ||
+| (mtllib) material libary | X ||
 | (shadow_obj) shadow casting |||
 | (trace_obj) ray tracing |||
 | (ctech) curve approximation technique |||
 | (stech) surface approximation technique |||
+| Others |||
+| (#) Comments | X ||
 
 Features from http://www.martinreddy.net/gfx/3d/OBJ.spec
