@@ -11,13 +11,16 @@ import org.junit.Test;
 
 public class ParserTest {
 
+	private String[] files = { "airboat", "capsule" };
+
 	@Test
 	public void readFile() {
 		Parser parser = new Parser();
-		URL filePath = this.getClass().getResource("/jobj/resources/example/airboat.obj");
-		File file = new File(filePath.getPath());
-		parser.setFile(file);
+		for (String fileName : files) {
+			URL filePath = this.getClass().getResource("/resources/"+fileName+".obj");
+			File file = new File(filePath.getPath());
+			parser.setFile(file);
+		}
 	}
-
 
 }

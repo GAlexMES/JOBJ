@@ -60,38 +60,63 @@ public class Parser {
 	private void handleLine(String line) {
 		String[] splittedLine = line.split(" ");
 		String elementTag = splittedLine[0];
-		
-		switch(elementTag){
-		
-		case "v": newVertex(splittedLine); break;
-		case "f": newFace(splittedLine); break;
-		case "g": newGroup(splittedLine); break;
-		case "s": newSmoothingGroup(splittedLine); break;
-		case "#": newComment(line);break;
-		case "mtllib": mitllibImport(splittedLine); break;
-		case "usemtl": newMTLUse(splittedLine); break;
-		case " ": break;
-		case "": break;
-		default: System.err.println("Parsing Error: Unknown Element tag: " + elementTag); break;
+
+		switch (elementTag) {
+
+		case "v":
+			newVertex(splittedLine, Verticies.VERTEX);
+			break;
+		case "vt":
+			newVertex(splittedLine, Verticies.TEXTURE_VERTEX);
+			break;
+		case "vn":
+			newVertex(splittedLine, Verticies.NORMALS_VERTEX);
+			break;
+		case "vp":
+			newVertex(splittedLine, Verticies.PARAMETER_SPACE_VERTEX);
+			break;
+		case "f":
+			newFace(splittedLine);
+			break;
+		case "g":
+			newGroup(splittedLine);
+			break;
+		case "s":
+			newSmoothingGroup(splittedLine);
+			break;
+		case "#":
+			newComment(line);
+			break;
+		case "mtllib":
+			mitllibImport(splittedLine);
+			break;
+		case "usemtl":
+			newMTLUse(splittedLine);
+			break;
+		case " ":
+			break;
+		case "":
+			break;
+		default:
+			System.err.println("Parsing Error: Unknown Element tag: " + elementTag);
+			break;
 		}
 	}
 
 	private void newMTLUse(String[] line) {
-		if(line.length > 1){
+		if (line.length > 1) {
 			tempFaceGroup.setMTLLibTexture(line[1]);
-		}
-		else{
+		} else {
 			System.err.println("Parsing Error: No texture given!");
 		}
 	}
 
 	private void newComment(String line) {
 		String[] comment = line.split("#");
-		if(comment.length>1){
+		if (comment.length > 1) {
 			Comment tempComment = new Comment(comment[1]);
 			tempComments.addComment(tempComment);
-		}
-		else{
+		} else {
 			System.err.println("Parsing Error: No comment given!");
 		}
 	}
@@ -101,14 +126,12 @@ public class Parser {
 	}
 
 	private void newSmoothingGroup(String[] line) {
-		try{
+		try {
 			tempSmoothinGroup = Integer.valueOf(line[1]);
-		}
-		catch(NumberFormatException nfe){
-			if(line[1].equals("off")){
+		} catch (NumberFormatException nfe) {
+			if (line[1].equals("off")) {
 				tempSmoothinGroup = 0;
-			}
-			else{
+			} else {
 				System.err.println("Parsing Error: Unknown Smoothing Group ('s'): " + line[1]);
 			}
 		}
@@ -120,17 +143,15 @@ public class Parser {
 				jobj.addFaceGroup(tempFaceGroup);
 			}
 		}
-		
+
 		String groupName;
-		if(line.length >1){
-			if(line[1].equals("")){
+		if (line.length > 1) {
+			if (line[1].equals("")) {
 				groupName = "Unknown Group Name";
-			}
-			else{
+			} else {
 				groupName = line[1];
 			}
-		}
-		else{
+		} else {
 			groupName = "Unknown Group Name";
 		}
 		tempFaceGroup = new FaceGroup(groupName);
@@ -139,17 +160,32 @@ public class Parser {
 	private void newFace(String[] line) {
 		Face newFace = new Face();
 		for (int i = 1; i < line.length; i++) {
-			newFace.addVertex(Integer.valueOf(line[i]));
+			try{
+				newFace.addVertex(Integer.valueOf(line[i]));
+			}
+			catch(NumberFormatException nfe){
+				newFace.addVertex(line[i]);
+			}
 		}
 		newFace.setSmoothingGroupe(tempSmoothinGroup);
 		tempFaceGroup.addFace(newFace);
 	}
 
-	private void newVertex(String[] line) {
-		Double xCoordinate = Double.valueOf(line[1]);
-		Double yCoordinate = Double.valueOf(line[2]);
-		Double zCoordinate = Double.valueOf(line[3]);
+	private void newVertex(String[] line, int vertexType) {
+		int lineLength = line.length;
+		Double zCoordinate = null;
+		Double yCoordinate = null;
+		Double xCoordinate = null;
+		switch (lineLength) {
+		case 4:
+			zCoordinate = Double.valueOf(line[3]);
+		case 3:
+			yCoordinate = Double.valueOf(line[2]);
+		case 2:
+			xCoordinate = Double.valueOf(line[1]);
+		}
+
 		Vertex newVertex = new Vertex(xCoordinate, yCoordinate, zCoordinate);
-		tempVerticies.addVertex(newVertex);
+		tempVerticies.addVertex(newVertex, vertexType);
 	}
 }
