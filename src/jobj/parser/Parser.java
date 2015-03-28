@@ -13,6 +13,11 @@ import jobj.jobj.JObj;
 import jobj.vertex.Vertex;
 import jobj.vertex.Verticies;
 
+/**
+ * <h1> Main Parsing Class </h1>
+ * @author Alexander Brennecke
+ *
+ */
 public class Parser {
 
 	private JObj jobj;
