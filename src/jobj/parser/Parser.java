@@ -12,7 +12,6 @@ import jobj.jobj.JObj;
 import jobj.jobj.Object;
 import jobj.vertex.Vertex;
 import jobj.vertex.Verticies;
-import jobj.jobj.*;
 
 /**
  * <h1>Main Parsing Class</h1>
@@ -30,14 +29,25 @@ public class Parser {
 	private Object tempObject;
 	private int tempSmoothinGroup;
 
+	/**
+	 * Creats a new JObj object.
+	 */
 	public Parser() {
 		jobj = new JObj();
 	}
 
+	/**
+	 * 
+	 * @return the parsed file as a JObj object.
+	 */
 	public JObj getJobj() {
 		return jobj;
 	}
 
+	/**
+	 * Parses the given file.
+	 * @param file The file, that should be parsed.
+	 */
 	public void setFile(File file) {
 		this.file = file;
 		jobj = new JObj();
@@ -48,6 +58,9 @@ public class Parser {
 		parse();
 	}
 
+	/**
+	 * Parses the current file line by line.
+	 */
 	private void parse() {
 		try {
 			FileReader fr = new FileReader(file);
@@ -67,6 +80,10 @@ public class Parser {
 		jobj.addObject(tempObject);
 	}
 
+	/**
+	 * Handles the given line by the tag, which stands bevor the first space.
+	 * @param line that should be parsed
+	 */
 	private void handleLine(String line) {
 		String[] splittedLine = line.split(" ");
 		String elementTag = splittedLine[0];
@@ -100,7 +117,7 @@ public class Parser {
 		case "s":
 			newSmoothingGroup(splittedLine);
 			break;
-		case "0":
+		case "o":
 			newObject(splittedLine);
 			break;
 		case "#":
