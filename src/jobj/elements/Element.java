@@ -13,6 +13,9 @@ import java.util.ArrayList;
  */
 public interface Element {
 
+	/**
+	 * vertexIDs is used for every Element tag. vertexNormalIDs and vertexTextureIDs is only used for the face tag
+	 */
 	ArrayList<Integer> vertexIDs = new ArrayList<>();
 	ArrayList<Integer> vertexNormalIDs = new ArrayList<>();
 	ArrayList<Integer> vertexTextureIDs= new ArrayList<>();
