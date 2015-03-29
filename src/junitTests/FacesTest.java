@@ -1,7 +1,7 @@
 package junitTests;
 
 import static org.junit.Assert.*;
-import jobj.faces.Face;
+import jobj.elements.Face;
 
 import org.junit.Test;
 
