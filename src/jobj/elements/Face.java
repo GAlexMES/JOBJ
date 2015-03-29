@@ -1,18 +1,11 @@
-package jobj.faces;
+package jobj.elements;
 
 import java.util.ArrayList;
 
-public class Face {
-
-	private ArrayList<Integer> vertexIDs;
-	private ArrayList<Integer> vertexNormalIDs;
-	private ArrayList<Integer> vertexTextureIDs;
+public class Face implements Element{
 	private int smoothingGroupe;
 
 	public Face() {
-		vertexIDs = new ArrayList<>();
-		vertexNormalIDs = new ArrayList<>();
-		vertexTextureIDs = new ArrayList<>();
 		smoothingGroupe = 0;
 	}
 

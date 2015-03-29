@@ -1,15 +1,15 @@
-package jobj.faces;
+package jobj.elements;
 
 import java.util.ArrayList;
 
 
-public class FaceGroup {
+public class ElementsGroup{
 
-	private ArrayList<Face> faceList;
+	private ArrayList<Element> faceList;
 	private String name;
 	private String mtlLibTexture;
 	
-	public FaceGroup(String name){
+	public ElementsGroup(String name){
 		this.name=name;
 		faceList = new ArrayList<>();
 	}
@@ -18,11 +18,11 @@ public class FaceGroup {
 		mtlLibTexture = textureName;
 	}
 	
-	public void addFace (Face face){
-		faceList.add(face);
+	public void addElement (Element elem){
+		faceList.add(elem);
 	}
 	
-	public ArrayList<Face> getFaceList(){
+	public ArrayList<Element> getElementsList(){
 		return this.faceList;
 	}
 }

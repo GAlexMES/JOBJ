@@ -2,18 +2,18 @@ package jobj.jobj;
 
 import java.util.ArrayList;
 
-import jobj.faces.FaceGroup;
+import jobj.elements.ElementsGroup;
 
 public class Object {
 
-	private ArrayList<FaceGroup> faceGroupList;
+	private ArrayList<ElementsGroup> faceGroupList;
 	private String objectName;
 	
 	public Object(){
 		faceGroupList = new ArrayList<>();
 	}
 	
-	public void addFaceGroup(FaceGroup faceGroup){
+	public void addFaceGroup(ElementsGroup faceGroup){
 		faceGroupList.add(faceGroup);
 	}
 	
