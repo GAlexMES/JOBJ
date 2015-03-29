@@ -39,6 +39,9 @@ public class Parser {
 		parse();
 	}
 
+	/**
+	 * Main parse loop!
+	 */
 	private void parse() {
 		try {
 			FileReader fr = new FileReader(file);
