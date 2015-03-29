@@ -2,6 +2,15 @@ package jobj.elements;
 
 import java.util.ArrayList;
 
+/**
+ * <h1> Element Interface </h1>
+ * Is used for the following .obj tags:
+ * <ul> p - Point </ul>
+ * <ul> l - Line </ul>
+ * <ul> f - Face </ul>
+ * @author Alexander Brennecke
+ *
+ */
 public interface Element {
 
 	ArrayList<Integer> vertexIDs = new ArrayList<>();
