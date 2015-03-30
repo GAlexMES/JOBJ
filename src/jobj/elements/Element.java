@@ -20,5 +20,11 @@ public interface Element {
 	ArrayList<Integer> vertexNormalIDs = new ArrayList<>();
 	ArrayList<Integer> vertexTextureIDs= new ArrayList<>();
 	
+	final static int POINT = 0;
+	final static int LINE = 1;
+	final static int FACE = 2;
+	
+	
 	void addVertex(Integer vertexID);
+	int getType();
 }

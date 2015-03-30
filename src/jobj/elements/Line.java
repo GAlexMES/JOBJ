@@ -7,5 +7,10 @@ public class Line implements Element {
 		vertexIDs.add(vertexID);
 	}
 
+	@Override
+	public int getType() {
+		return Element.LINE;
+	}
+
 
 }

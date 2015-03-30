@@ -64,6 +64,11 @@ public class Face implements Element{
 	public ArrayList<Integer> getVertexTextureIDs() {
 		return vertexTextureIDs;
 	}
+
+	@Override
+	public int getType() {
+		return Element.FACE;
+	}
 	
 	
 }

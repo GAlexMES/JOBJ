@@ -16,4 +16,9 @@ public class Point implements Element{
 		return vertexIDs.get(0);
 	}
 
+	@Override
+	public int getType() {
+		return Element.POINT;
+	}
+
 }
