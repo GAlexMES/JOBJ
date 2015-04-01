@@ -7,15 +7,15 @@ A libary/parser for reading .obj files in Java.
 | :------ | :-----: | :-----: |
 | Vertex data |
 | (v) geometric vertices |  X | |
-| (vt) texture vertices | | |
-| (vn) vertex normals | | |
-| (vp) parameter space vertices |||
+| (vt) texture vertices | X | |
+| (vn) vertex normals | C | |
+| (vp) parameter space vertices | X ||
 | (deg) degree |||
 | (bmat) basis matrix |||
 | (step) step size |||
 | Elements |
-| (p) point |||
-| (l) line |||
+| (p) point |X||
+| (l) line |X||
 | (f) face | X ||
 | (curv) curve |||
 | (curv2) 2D curve |||
@@ -33,7 +33,7 @@ A libary/parser for reading .obj files in Java.
 | (g) group name | X ||
 | (s) smoothing group | X ||
 | (mg) merging group |||
-| (o) object name |  ||
+| (o) object name | X ||
 | Display/render attributes |
 | (bevel) bevel interpolation |||
 | (c_interp) color interpolation |||
