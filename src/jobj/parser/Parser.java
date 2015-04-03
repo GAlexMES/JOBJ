@@ -11,19 +11,23 @@ import jobj.elements.*;
 import jobj.jobj.JObj;
 import jobj.jobj.Object;
 import jobj.vertex.Vertex;
-import jobj.vertex.Verticies;
+import jobj.vertex.Vertices;
 
 /**
  * <h1>Main Parsing Class</h1>
  * 
+ * This class iterates over the given .obj file and will save it line for line to a complete JObj file.
  * @author Alexander Brennecke
  *
  */
 public class Parser {
 
+	/**
+	 * Initialization
+	 */
 	private JObj jobj;
 	private File file;
-	private Verticies tempVerticies;
+	private Vertices tempVertices;
 	private ElementsGroup tempElementsGroup;
 	private Comments tempComments;
 	private Object tempObject;
@@ -55,7 +59,7 @@ public class Parser {
 	public void setFile(File file) {
 		this.file = file;
 		jobj = new JObj();
-		tempVerticies = new Verticies();
+		tempVertices = new Vertices();
 		tempComments = new Comments();
 		tempObject = new Object();
 		tempSmoothinGroup = 0;
@@ -63,6 +67,9 @@ public class Parser {
 		parse();
 	}
 
+	/**
+	 * This method resets the vertexCounter.
+	 */
 	private void resetVertexCounter() {
 		for (int i = 0; i < vertexCounter.length; i++) {
 			vertexCounter[0] = 0;
@@ -86,7 +93,7 @@ public class Parser {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		jobj.setVerticies(tempVerticies);
+		jobj.setVertices(tempVertices);
 		tempObject.addFaceGroup(tempElementsGroup);
 		jobj.addObject(tempObject);
 	}
@@ -104,16 +111,16 @@ public class Parser {
 		switch (elementTag) {
 
 		case "v":
-			newVertex(splittedLine, Verticies.VERTEX);
+			newVertex(splittedLine, Vertices.VERTEX);
 			break;
 		case "vt":
-			newVertex(splittedLine, Verticies.TEXTURE_VERTEX);
+			newVertex(splittedLine, Vertices.TEXTURE_VERTEX);
 			break;
 		case "vn":
-			newVertex(splittedLine, Verticies.NORMALS_VERTEX);
+			newVertex(splittedLine, Vertices.NORMALS_VERTEX);
 			break;
 		case "vp":
-			newVertex(splittedLine, Verticies.PARAMETER_SPACE_VERTEX);
+			newVertex(splittedLine, Vertices.PARAMETER_SPACE_VERTEX);
 			break;
 		case "l":
 			newLine(splittedLine);
@@ -175,6 +182,10 @@ public class Parser {
 		tempElementsGroup.addElement(lineElem);
 	}
 
+	/**
+	 * This method creates a new Object object and saves the old one to the JObj object.
+	 * @param line The line, which includes the "o" tag.
+	 */
 	private void newObject(String[] line) {
 		jobj.addObject(tempObject);
 		tempObject = new Object();
@@ -190,6 +201,10 @@ public class Parser {
 		tempObject.setName(objectName);
 	}
 
+	/**
+	 * This method adds a mtlTexture to a ElementGroup.
+	 * @param line The line, which includes the "usemtl" tag.
+	 */
 	private void newMTLUse(String[] line) {
 		if (line.length > 1) {
 			tempElementsGroup.setMTLLibTexture(line[1]);
@@ -198,6 +213,10 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * This method adds a new Comment, which includes the text behind the "#" tag to the Comments object.
+	 * @param line The line, which includes the "#" tag.
+	 */
 	private void newComment(String line) {
 		String[] comment = line.split("#");
 		if (comment.length > 1) {
@@ -208,10 +227,18 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * This method sets the path to the .mtl file, which will be used for the file.
+	 * @param splittedLine The line, which includes the "mtllib" tag.
+	 */
 	private void mitllibImport(String[] splittedLine) {
 		jobj.setMTLLibFilePath(splittedLine[1]);
 	}
 
+	/**
+	 * This method saves the smoothing group to a local variable. Every following face will use it.
+	 * @param line The line, which includes the "s" tag.
+	 */
 	private void newSmoothingGroup(String[] line) {
 		try {
 			tempSmoothinGroup = Integer.valueOf(line[1]);
@@ -224,6 +251,10 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * This method defines a new Element Group. The old group will be added to the temporary Object object.
+	 * @param line The line, which includes the "g" tag.
+	 */
 	private void newGroup(String[] line) {
 		if (tempElementsGroup != null) {
 			if (tempElementsGroup.getElementsList().size() > 0) {
@@ -244,13 +275,17 @@ public class Parser {
 		tempElementsGroup = new ElementsGroup(groupName);
 	}
 
+	/**
+	 * This method defines a new Face object, which will be added to the temporary group object.
+	 * @param line The line, which includes the "f" tag.
+	 */
 	private void newFace(String[] line) {
 		Face newFace = new Face();
 		for (int i = 1; i < line.length; i++) {
 			try {
 				int vertexID = Integer.valueOf(line[i]);
 				if (vertexID < 0) {
-					vertexID = vertexCounter[Verticies.VERTEX] + (vertexID + 1);
+					vertexID = vertexCounter[Vertices.VERTEX] + (vertexID + 1);
 				}
 				newFace.addVertex(vertexID);
 			} catch (NumberFormatException nfe) {
@@ -261,6 +296,11 @@ public class Parser {
 		tempElementsGroup.addElement(newFace);
 	}
 
+	/**
+	 * This method creates a new vertex, which will be added to a ArrayList in the Vertices object.
+	 * @param line The line, which includes the "v" / "vn" / "vp" / "vt" tag.
+	 * @param vertexType the type of the vertex. Should be one of the static types, defined in the Vertices class.
+	 */
 	private void newVertex(String[] line, int vertexType) {
 		int lineLength = line.length;
 		Double zCoordinate = null;
@@ -275,7 +315,7 @@ public class Parser {
 			xCoordinate = Double.valueOf(line[1]);
 		}
 		Vertex newVertex = new Vertex(xCoordinate, yCoordinate, zCoordinate);
-		tempVerticies.addVertex(newVertex, vertexType);
+		tempVertices.addVertex(newVertex, vertexType);
 		vertexCounter[vertexType] = vertexCounter[vertexType]+1;
 	}
 }

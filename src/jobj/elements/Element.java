@@ -15,6 +15,10 @@ import jobj.vertex.Vertex;
  */
 public interface Element {
 	
+	/**
+	 * Defines the type of the class, which implements this interface.
+	 * Used for clearly identification.
+	 */
 	final static int POINT = 0;
 	final static int LINE = 1;
 	final static int FACE = 2;

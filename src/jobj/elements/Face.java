@@ -2,35 +2,41 @@ package jobj.elements;
 
 import java.util.ArrayList;
 
-import jobj.vertex.Vertex;
-import jobj.vertex.Verticies;
 
+/**
+ * <h1> Face </h1>
+ * This class is for the "f" Face tag in .obj files.
+ * It contains three ArrayLists, which stores the position of the used verticies.
+ * Also it could contains a smoothing group.
+ * @author Alexander Brennecke
+ *
+ */
 public class Face implements Element{
-	private int smoothingGroupe;
+	/**
+	 * Initialization
+	 */
+	private int smoothingGroup;
 	private ArrayList<Integer> vertexIDs;
 	private ArrayList<Integer> vertexNormalIDs;
 	private ArrayList<Integer> vertexTextureIDs;
 	
+	/**
+	 * Constructor
+	 */
 	public Face() {
-		smoothingGroupe = 0;
+		smoothingGroup = 0;
 		vertexIDs = new ArrayList<>();
 		vertexNormalIDs = new ArrayList<>();
 		vertexTextureIDs= new ArrayList<>();
 		
 	}
 
-	public void setSmoothingGroupe(int smoothingGroupe) {
-		this.smoothingGroupe = smoothingGroupe;
-	}
-
-	public void addVertex(Integer id) {
-		vertexIDs.add(id);
-	}
-	
-	public ArrayList<Integer> getVertexIDS(){
-		return vertexIDs;
-	}
-	
+	/**
+	 * Is used, when a v/vn/vt is used in the .obj file 
+	 * @param vertexID The string in the v/vn/vt pattern
+	 * @param vertexCounter the counter for verticies to handle negativ verticies
+	 * @return true if everything works and false if something went wrong
+	 */
 	public boolean addVertex(String vertexID, Integer[] vertexCounter){
 		if(vertexID.contains("/")){
 			String[] ids = vertexID.split("/");
@@ -56,6 +62,11 @@ public class Face implements Element{
 		return checkLists();
 	}
 
+	/**
+	 * Checks if the arrayLists have a correct length.
+	 * A face needs for each vertex the same pattern.
+	 * @return true if everything works and false if something went wrong
+	 */
 	private boolean checkLists() {
 		int vSize = vertexIDs.size();
 		int vnSize = vertexNormalIDs.size();
@@ -70,10 +81,12 @@ public class Face implements Element{
 		return true;
 	}
 
-	@Override
-	public ArrayList<Integer> getVertexIDs() {
-		return vertexIDs;
-	}
+	/**
+	 * Is used, when the vn/vt is not given.
+	 */
+	public void addVertex(Integer id) {
+		vertexIDs.add(id);
+	}	
 
 	public ArrayList<Integer> getVertexNormalIDs() {
 		return vertexNormalIDs;
@@ -83,11 +96,19 @@ public class Face implements Element{
 		return vertexTextureIDs;
 	}
 
+	public void setSmoothingGroupe(int smoothingGroup) {
+		this.smoothingGroup = smoothingGroup;
+	}
+	
+	
+	@Override
+	public ArrayList<Integer> getVertexIDs() {
+		return vertexIDs;
+	}
 	@Override
 	public int getType() {
 		return Element.FACE;
 	}
 
-	
 	
 }

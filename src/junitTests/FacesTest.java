@@ -63,7 +63,6 @@ public class FacesTest {
 	public void addFalseVertex() {
 		for (String vertex : falseVerticies) {
 			Face newFace = new Face();
-			newFace.getVertexIDS();
 			String[] line = vertex.split(" ");
 			for (int i = 1; i < line.length; i++) {
 				try {

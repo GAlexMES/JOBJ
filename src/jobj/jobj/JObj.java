@@ -3,22 +3,35 @@ package jobj.jobj;
 import java.util.ArrayList;
 
 import jobj.jobj.Object;
-import jobj.vertex.Verticies;
+import jobj.vertex.Vertices;
 
+/**
+ * <h1> JObj </h1>
+ * This is the most important class. After the parsing of a .obj file is finished, al information will be saved in an object of this class.
+ * To see, which information will be parsed check out our <a href="https://github.com/haloshat/JOBJ/blob/master/README.md"> READNE.md at our git repository </a>
+ * @author Alexander Brennecke
+ *
+ */
 public class JObj {
 
-	private Verticies verticies;
+	/**
+	 * Initialization
+	 */
+	private Vertices vertices;
 	private String mtllibFilePaht = "";
 	
 	ArrayList<Object> objectList;
 	
+	/**
+	 * Construcotr
+	 */
 	public JObj(){
-		verticies = new Verticies();
+		vertices = new Vertices();
 		objectList = new ArrayList<>();
 	}
 	
-	public void setVerticies(Verticies verticies){
-		this.verticies = verticies;
+	public void setVertices(Vertices verticies){
+		this.vertices = verticies;
 	}
 	
 	public void addObject(Object object){

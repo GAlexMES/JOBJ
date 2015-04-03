@@ -2,6 +2,13 @@ package jobj.elements;
 
 import java.util.ArrayList;
 
+/**
+ * <h1> Line </h1>
+ * This class handles the "l" Line tag in .obj files.
+ * It saves a number of verticies.
+ * @author Alexander Brennecke
+ *
+ */
 public class Line implements Element {
 
 	private ArrayList<Integer> vertexIDs;
