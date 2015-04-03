@@ -3,6 +3,7 @@ package jobj.elements;
 import java.util.ArrayList;
 
 import jobj.vertex.Vertex;
+import jobj.vertex.Verticies;
 
 public class Face implements Element{
 	private int smoothingGroupe;
@@ -30,12 +31,15 @@ public class Face implements Element{
 		return vertexIDs;
 	}
 	
-	public boolean addVertex(String vertexID){
+	public boolean addVertex(String vertexID, Integer[] vertexCounter){
 		if(vertexID.contains("/")){
 			String[] ids = vertexID.split("/");
 			for(int i = 0; i<ids.length;i++){
 				try{
 					Integer id = Integer.valueOf(ids[i]);
+					if(id<0){
+						id = vertexCounter[i] + (id + 1);
+					}
 					switch(i){
 					case 0: vertexIDs.add(id); break;
 					case 1: vertexTextureIDs.add(id); break;

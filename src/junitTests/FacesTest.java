@@ -10,6 +10,8 @@ public class FacesTest {
 	String[] rightVerticies = { "f 1 2 3", "f 1//2 2//3 2//4", "f 1/2/ 2/3/ 2/4/", "f 1/2 2/3 2/4", "f 1/2/3 2/3/4 2/4/5" };
 	String[] falseVerticies = { "f 1/2/3 b c", "f 1/2 2/3/3 2/4/3", "f 1/2/4 2/3/ 2/4/", "f 2/3/1 /3/4 /4/5" };
 
+	private Integer[] dummyArray = new Integer[4];
+	
 	@Test
 	public void addRightVertex() {
 		Face newFace;
@@ -20,7 +22,7 @@ public class FacesTest {
 				try {
 					newFace.addVertex(Integer.valueOf(line[i]));
 				} catch (NumberFormatException nfe) {
-					assertTrue("Wrong vertex", newFace.addVertex(line[i]));
+					assertTrue("Wrong vertex", newFace.addVertex(line[i], dummyArray));
 				}
 			}
 
@@ -68,9 +70,9 @@ public class FacesTest {
 					newFace.addVertex(Integer.valueOf(line[i]));
 				} catch (NumberFormatException nfe) {
 					if (i == 1) {
-						assertTrue("Wrong vertex", newFace.addVertex(line[i]));
+						assertTrue("Wrong vertex", newFace.addVertex(line[i], dummyArray));
 					} else {
-						assertFalse("Wrong vertex", newFace.addVertex(line[i]));
+						assertFalse("Wrong vertex", newFace.addVertex(line[i], dummyArray));
 					}
 				}
 			}

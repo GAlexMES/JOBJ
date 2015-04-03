@@ -254,7 +254,7 @@ public class Parser {
 				}
 				newFace.addVertex(vertexID);
 			} catch (NumberFormatException nfe) {
-				newFace.addVertex(line[i]);
+				newFace.addVertex(line[i], vertexCounter);
 			}
 		}
 		newFace.setSmoothingGroupe(tempSmoothinGroup);
