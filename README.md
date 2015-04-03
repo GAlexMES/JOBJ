@@ -8,7 +8,7 @@ A libary/parser for reading .obj files in Java.
 | Vertex data |
 | (v) geometric vertices |  X | |
 | (vt) texture vertices | X | |
-| (vn) vertex normals | C | |
+| (vn) vertex normals | X | |
 | (vp) parameter space vertices | X ||
 | (deg) degree |||
 | (bmat) basis matrix |||
