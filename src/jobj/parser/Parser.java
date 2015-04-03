@@ -73,9 +73,6 @@ public class Parser {
 	/**
 	 * Parses the current file line by line.
 	 */
-	/**
-	 * Main parse loop!
-	 */
 	private void parse() {
 		try {
 			FileReader fr = new FileReader(file);
