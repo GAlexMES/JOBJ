@@ -50,12 +50,6 @@ public class Parser {
 		return jobj;
 	}
 
-	/**
-	 * Parses the given file.
-	 * 
-	 * @param file
-	 *            The file, that should be parsed.
-	 */
 	public void setFile(File file) {
 		this.file = file;
 		jobj = new JObj();
@@ -78,6 +72,9 @@ public class Parser {
 
 	/**
 	 * Parses the current file line by line.
+	 */
+	/**
+	 * Main parse loop!
 	 */
 	private void parse() {
 		try {
