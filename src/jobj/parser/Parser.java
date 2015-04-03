@@ -28,6 +28,8 @@ public class Parser {
 	private Comments tempComments;
 	private Object tempObject;
 	private int tempSmoothinGroup;
+	// [v;vt;vn;vp]
+	private Integer[] vertexCounter = { 0, 0, 0, 0 };
 
 	/**
 	 * Creats a new JObj object.
@@ -46,7 +48,9 @@ public class Parser {
 
 	/**
 	 * Parses the given file.
-	 * @param file The file, that should be parsed.
+	 * 
+	 * @param file
+	 *            The file, that should be parsed.
 	 */
 	public void setFile(File file) {
 		this.file = file;
@@ -55,7 +59,14 @@ public class Parser {
 		tempComments = new Comments();
 		tempObject = new Object();
 		tempSmoothinGroup = 0;
+		resetVertexCounter();
 		parse();
+	}
+
+	private void resetVertexCounter() {
+		for (int i = 0; i < vertexCounter.length; i++) {
+			vertexCounter[0] = 0;
+		}
 	}
 
 	/**
@@ -82,7 +93,9 @@ public class Parser {
 
 	/**
 	 * Handles the given line by the tag, which stands bevor the first space.
-	 * @param line that should be parsed
+	 * 
+	 * @param line
+	 *            that should be parsed
 	 */
 	private void handleLine(String line) {
 		String[] splittedLine = line.split(" ");
@@ -143,25 +156,23 @@ public class Parser {
 		Point point = new Point();
 		int vertex = Integer.valueOf(line[1]);
 		point.addVertex(vertex);
-		tempElementsGroup.addElement(point);	
+		tempElementsGroup.addElement(point);
 	}
 
 	private void newLine(String[] line) {
 		Line lineElem = new Line();
 		if (line.length > 1) {
 			for (int i = 1; i < line.length; i++) {
-				try{
+				try {
 					lineElem.addVertex(Integer.valueOf(line[i]));
-				}
-				catch(NumberFormatException nfe){
+				} catch (NumberFormatException nfe) {
 					System.out.println("Parsing Error: Wrong parameter for line");
 				}
 			}
-		}
-		else{
+		} else {
 			System.out.println("Parsing Error: Missing parameters for line");
 		}
-		tempElementsGroup.addElement(lineElem);		
+		tempElementsGroup.addElement(lineElem);
 	}
 
 	private void newObject(String[] line) {
@@ -173,8 +184,7 @@ public class Parser {
 			for (int i = 1; i < line.length; i++) {
 				objectName = objectName + " " + line[i];
 			}
-		}
-		else{
+		} else {
 			objectName = "Unnamed";
 		}
 		tempObject.setName(objectName);
@@ -238,7 +248,11 @@ public class Parser {
 		Face newFace = new Face();
 		for (int i = 1; i < line.length; i++) {
 			try {
-				newFace.addVertex(Integer.valueOf(line[i]));
+				int vertexID = Integer.valueOf(line[i]);
+				if (vertexID < 0) {
+					vertexID = vertexCounter[Verticies.VERTEX] + (vertexID + 1);
+				}
+				newFace.addVertex(vertexID);
 			} catch (NumberFormatException nfe) {
 				newFace.addVertex(line[i]);
 			}
@@ -260,8 +274,8 @@ public class Parser {
 		case 2:
 			xCoordinate = Double.valueOf(line[1]);
 		}
-
 		Vertex newVertex = new Vertex(xCoordinate, yCoordinate, zCoordinate);
 		tempVerticies.addVertex(newVertex, vertexType);
+		vertexCounter[vertexType] = vertexCounter[vertexType]+1;
 	}
 }

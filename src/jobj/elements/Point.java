@@ -1,7 +1,15 @@
 package jobj.elements;
 
-public class Point implements Element{
+import java.util.ArrayList;
 
+public class Point implements Element{
+	
+	private ArrayList<Integer> vertexIDs;
+
+	public Point(){
+		vertexIDs = new ArrayList<>();
+	}
+	
 	@Override
 	public void addVertex(Integer vertexID) {
 		if(vertexIDs.size()>0){
@@ -19,6 +27,11 @@ public class Point implements Element{
 	@Override
 	public int getType() {
 		return Element.POINT;
+	}
+
+	@Override
+	public ArrayList<Integer> getVertexIDs() {
+		return vertexIDs;
 	}
 
 }

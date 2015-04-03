@@ -2,6 +2,8 @@ package jobj.elements;
 
 import java.util.ArrayList;
 
+import jobj.vertex.Vertex;
+
 /**
  * <h1> Element Interface </h1>
  * Is used for the following .obj tags:
@@ -12,13 +14,6 @@ import java.util.ArrayList;
  *
  */
 public interface Element {
-
-	/**
-	 * vertexIDs is used for every Element tag. vertexNormalIDs and vertexTextureIDs is only used for the face tag
-	 */
-	ArrayList<Integer> vertexIDs = new ArrayList<>();
-	ArrayList<Integer> vertexNormalIDs = new ArrayList<>();
-	ArrayList<Integer> vertexTextureIDs= new ArrayList<>();
 	
 	final static int POINT = 0;
 	final static int LINE = 1;
@@ -26,5 +21,7 @@ public interface Element {
 	
 	
 	void addVertex(Integer vertexID);
+	ArrayList<Integer> getVertexIDs();
+	
 	int getType();
 }

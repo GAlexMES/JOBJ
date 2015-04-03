@@ -7,8 +7,7 @@ import org.junit.Test;
 
 public class FacesTest {
 
-	String[] rightVerticies = { "f 1 2 3", "f 1//2 2//3 2//4", "f 1/2/ 2/3/ 2/4/", "f 1/2 2/3 2/4",
-			"f 1/2/3 2/3/4 2/4/5" };
+	String[] rightVerticies = { "f 1 2 3", "f 1//2 2//3 2//4", "f 1/2/ 2/3/ 2/4/", "f 1/2 2/3 2/4", "f 1/2/3 2/3/4 2/4/5" };
 	String[] falseVerticies = { "f 1/2/3 b c", "f 1/2 2/3/3 2/4/3", "f 1/2/4 2/3/ 2/4/", "f 2/3/1 /3/4 /4/5" };
 
 	@Test
@@ -60,9 +59,9 @@ public class FacesTest {
 
 	@Test
 	public void addFalseVertex() {
-		Face newFace;
 		for (String vertex : falseVerticies) {
-			newFace = new Face();
+			Face newFace = new Face();
+			newFace.getVertexIDS();
 			String[] line = vertex.split(" ");
 			for (int i = 1; i < line.length; i++) {
 				try {

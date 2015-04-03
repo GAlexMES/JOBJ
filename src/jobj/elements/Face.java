@@ -2,11 +2,20 @@ package jobj.elements;
 
 import java.util.ArrayList;
 
+import jobj.vertex.Vertex;
+
 public class Face implements Element{
 	private int smoothingGroupe;
-
+	private ArrayList<Integer> vertexIDs;
+	private ArrayList<Integer> vertexNormalIDs;
+	private ArrayList<Integer> vertexTextureIDs;
+	
 	public Face() {
 		smoothingGroupe = 0;
+		vertexIDs = new ArrayList<>();
+		vertexNormalIDs = new ArrayList<>();
+		vertexTextureIDs= new ArrayList<>();
+		
 	}
 
 	public void setSmoothingGroupe(int smoothingGroupe) {
@@ -16,7 +25,11 @@ public class Face implements Element{
 	public void addVertex(Integer id) {
 		vertexIDs.add(id);
 	}
-
+	
+	public ArrayList<Integer> getVertexIDS(){
+		return vertexIDs;
+	}
+	
 	public boolean addVertex(String vertexID){
 		if(vertexID.contains("/")){
 			String[] ids = vertexID.split("/");
@@ -53,6 +66,7 @@ public class Face implements Element{
 		return true;
 	}
 
+	@Override
 	public ArrayList<Integer> getVertexIDs() {
 		return vertexIDs;
 	}
@@ -69,6 +83,7 @@ public class Face implements Element{
 	public int getType() {
 		return Element.FACE;
 	}
+
 	
 	
 }
