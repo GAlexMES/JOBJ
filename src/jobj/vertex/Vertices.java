@@ -2,7 +2,13 @@ package jobj.vertex;
 
 import java.util.ArrayList;
 
-public class Verticies {
+/**
+ * <h1> Vertices </h1>
+ * This class stores all types of vertices in a seperate array List.
+ * @author Alexander Brennecke
+ *
+ */
+public class Vertices {
 
 	private ArrayList<Vertex> vertexList;
 	private ArrayList<Vertex> textureVertexList;
@@ -14,7 +20,10 @@ public class Verticies {
 	public static final int NORMALS_VERTEX = 2;
 	public static final int PARAMETER_SPACE_VERTEX = 3;
 
-	public Verticies() {
+	/**
+	 * Constructor
+	 */
+	public Vertices() {
 		vertexList = new ArrayList<>();
 		textureVertexList = new ArrayList<>();
 		normalsVertexList = new ArrayList<>();
