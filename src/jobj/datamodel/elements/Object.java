@@ -1,8 +1,6 @@
-package jobj.jobj;
+package jobj.datamodel.elements;
 
 import java.util.ArrayList;
-
-import jobj.elements.ElementsGroup;
 
 public class Object {
 

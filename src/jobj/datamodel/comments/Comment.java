@@ -1,4 +1,4 @@
-package jobj.comments;
+package jobj.datamodel.comments;
 
 /**
  * Saves a comment text.

@@ -1,8 +1,9 @@
-package jobj.jobj;
+package jobj.datamodel.jobj;
 
 import java.util.ArrayList;
 
-import jobj.vertex.Vertices;
+import jobj.datamodel.elements.Object;
+import jobj.datamodel.vertex.Vertices;
 
 /**
  * <h1> JObj </h1>

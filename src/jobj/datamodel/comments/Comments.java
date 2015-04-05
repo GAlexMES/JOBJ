@@ -1,4 +1,4 @@
-package jobj.comments;
+package jobj.datamodel.comments;
 
 import java.util.ArrayList;
 
