@@ -16,7 +16,9 @@ import jobj.vertex.Vertices;
 /**
  * <h1>Main Parsing Class</h1>
  * 
- * This class iterates over the given .obj file and will save it line for line to a complete JObj file.
+ * This class iterates over the given .obj file and will save it line for line
+ * to a complete JObj file.
+ * 
  * @author Alexander Brennecke
  *
  */
@@ -34,6 +36,8 @@ public class Parser {
 	private int tempSmoothinGroup;
 	// [v;vt;vn;vp]
 	private Integer[] vertexCounter = { 0, 0, 0, 0 };
+
+	private final String unknownGroupName = "Unknown Group Name";
 
 	/**
 	 * Creats a new JObj object.
@@ -62,6 +66,7 @@ public class Parser {
 		tempVertices = new Vertices();
 		tempComments = new Comments();
 		tempObject = new Object();
+		tempElementsGroup = new ElementsGroup(unknownGroupName);
 		tempSmoothinGroup = 0;
 		resetVertexCounter();
 		parse();
@@ -94,7 +99,7 @@ public class Parser {
 			e.printStackTrace();
 		}
 		jobj.setVertices(tempVertices);
-		tempObject.addFaceGroup(tempElementsGroup);
+		tempObject.addElementsGroup(tempElementsGroup);
 		jobj.addObject(tempObject);
 	}
 
@@ -183,17 +188,32 @@ public class Parser {
 	}
 
 	/**
-	 * This method creates a new Object object and saves the old one to the JObj object.
-	 * @param line The line, which includes the "o" tag.
+	 * This method creates a new Object object and saves the old one to the JObj
+	 * object.
+	 * 
+	 * @param line
+	 *            The line, which includes the "o" tag.
 	 */
 	private void newObject(String[] line) {
-		jobj.addObject(tempObject);
+		if (tempElementsGroup.getElementsList().size()>0) {
+			tempObject.addElementsGroup(tempElementsGroup);
+		}
+		tempElementsGroup = new ElementsGroup(unknownGroupName);
+		
+		if (tempObject.getName()!=null || tempObject.getElementsGroup().size()>0) {
+			jobj.addObject(tempObject);
+		}
 		tempObject = new Object();
 
 		String objectName = "";
 		if (line.length > 1) {
 			for (int i = 1; i < line.length; i++) {
-				objectName = objectName + " " + line[i];
+				if(i==1){
+					objectName = line[i];
+				}
+				else{
+					objectName = objectName + " " + line[i];
+				}
 			}
 		} else {
 			objectName = "Unnamed";
@@ -203,7 +223,9 @@ public class Parser {
 
 	/**
 	 * This method adds a mtlTexture to a ElementGroup.
-	 * @param line The line, which includes the "usemtl" tag.
+	 * 
+	 * @param line
+	 *            The line, which includes the "usemtl" tag.
 	 */
 	private void newMTLUse(String[] line) {
 		if (line.length > 1) {
@@ -214,8 +236,11 @@ public class Parser {
 	}
 
 	/**
-	 * This method adds a new Comment, which includes the text behind the "#" tag to the Comments object.
-	 * @param line The line, which includes the "#" tag.
+	 * This method adds a new Comment, which includes the text behind the "#"
+	 * tag to the Comments object.
+	 * 
+	 * @param line
+	 *            The line, which includes the "#" tag.
 	 */
 	private void newComment(String line) {
 		String[] comment = line.split("#");
@@ -228,16 +253,22 @@ public class Parser {
 	}
 
 	/**
-	 * This method sets the path to the .mtl file, which will be used for the file.
-	 * @param splittedLine The line, which includes the "mtllib" tag.
+	 * This method sets the path to the .mtl file, which will be used for the
+	 * file.
+	 * 
+	 * @param splittedLine
+	 *            The line, which includes the "mtllib" tag.
 	 */
 	private void mitllibImport(String[] splittedLine) {
 		jobj.setMTLLibFilePath(splittedLine[1]);
 	}
 
 	/**
-	 * This method saves the smoothing group to a local variable. Every following face will use it.
-	 * @param line The line, which includes the "s" tag.
+	 * This method saves the smoothing group to a local variable. Every
+	 * following face will use it.
+	 * 
+	 * @param line
+	 *            The line, which includes the "s" tag.
 	 */
 	private void newSmoothingGroup(String[] line) {
 		try {
@@ -252,32 +283,38 @@ public class Parser {
 	}
 
 	/**
-	 * This method defines a new Element Group. The old group will be added to the temporary Object object.
-	 * @param line The line, which includes the "g" tag.
+	 * This method defines a new Element Group. The old group will be added to
+	 * the temporary Object object.
+	 * 
+	 * @param line
+	 *            The line, which includes the "g" tag.
 	 */
 	private void newGroup(String[] line) {
 		if (tempElementsGroup != null) {
 			if (tempElementsGroup.getElementsList().size() > 0) {
-				tempObject.addFaceGroup(tempElementsGroup);
+				tempObject.addElementsGroup(tempElementsGroup);
 			}
 		}
 
 		String groupName;
 		if (line.length > 1) {
 			if (line[1].equals("")) {
-				groupName = "Unknown Group Name";
+				groupName = unknownGroupName;
 			} else {
 				groupName = line[1];
 			}
 		} else {
-			groupName = "Unknown Group Name";
+			groupName = unknownGroupName;
 		}
 		tempElementsGroup = new ElementsGroup(groupName);
 	}
 
 	/**
-	 * This method defines a new Face object, which will be added to the temporary group object.
-	 * @param line The line, which includes the "f" tag.
+	 * This method defines a new Face object, which will be added to the
+	 * temporary group object.
+	 * 
+	 * @param line
+	 *            The line, which includes the "f" tag.
 	 */
 	private void newFace(String[] line) {
 		Face newFace = new Face();
@@ -297,9 +334,14 @@ public class Parser {
 	}
 
 	/**
-	 * This method creates a new vertex, which will be added to a ArrayList in the Vertices object.
-	 * @param line The line, which includes the "v" / "vn" / "vp" / "vt" tag.
-	 * @param vertexType the type of the vertex. Should be one of the static types, defined in the Vertices class.
+	 * This method creates a new vertex, which will be added to a ArrayList in
+	 * the Vertices object.
+	 * 
+	 * @param line
+	 *            The line, which includes the "v" / "vn" / "vp" / "vt" tag.
+	 * @param vertexType
+	 *            the type of the vertex. Should be one of the static types,
+	 *            defined in the Vertices class.
 	 */
 	private void newVertex(String[] line, int vertexType) {
 		int lineLength = line.length;
@@ -316,6 +358,6 @@ public class Parser {
 		}
 		Vertex newVertex = new Vertex(xCoordinate, yCoordinate, zCoordinate);
 		tempVertices.addVertex(newVertex, vertexType);
-		vertexCounter[vertexType] = vertexCounter[vertexType]+1;
+		vertexCounter[vertexType] = vertexCounter[vertexType] + 1;
 	}
 }

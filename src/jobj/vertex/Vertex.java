@@ -26,4 +26,16 @@ public class Vertex {
 		yCoordinate = y;
 		zCoordinate = z;
 	}
+
+	public Double getxCoordinate() {
+		return xCoordinate;
+	}
+
+	public Double getyCoordinate() {
+		return yCoordinate;
+	}
+
+	public Double getzCoordinate() {
+		return zCoordinate;
+	}
 }
