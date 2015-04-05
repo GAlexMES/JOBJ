@@ -32,8 +32,8 @@ public class Face implements Element{
 	}
 
 	/**
-	 * Is used, when a v/vn/vt is used in the .obj file 
-	 * @param vertexID The string in the v/vn/vt pattern
+	 * Is used, when a v/vt/vn is used in the .obj file 
+	 * @param vertexID The string in the v/vt/vn pattern
 	 * @param vertexCounter the counter for verticies to handle negativ verticies
 	 * @return true if everything works and false if something went wrong
 	 */
@@ -96,10 +96,13 @@ public class Face implements Element{
 		return vertexTextureIDs;
 	}
 
-	public void setSmoothingGroupe(int smoothingGroup) {
+	public void setSmoothingGroup(int smoothingGroup) {
 		this.smoothingGroup = smoothingGroup;
 	}
 	
+	public int getSmoothingGroup(){
+		return smoothingGroup;
+	}
 	
 	@Override
 	public ArrayList<Integer> getVertexIDs() {

@@ -166,8 +166,9 @@ public class Parser {
 
 	private void newPoint(String[] line) {
 		Point point = new Point();
-		int vertex = Integer.valueOf(line[1]);
-		point.addVertex(vertex);
+		int vertexID = Integer.valueOf(line[1]);
+		vertexID = convertRelativToAbsolutVertexID(vertexID);
+		point.addVertex(vertexID);
 		tempElementsGroup.addElement(point);
 	}
 
@@ -176,7 +177,9 @@ public class Parser {
 		if (line.length > 1) {
 			for (int i = 1; i < line.length; i++) {
 				try {
-					lineElem.addVertex(Integer.valueOf(line[i]));
+					int vertexID = Integer.valueOf(line[i]);
+					vertexID = convertRelativToAbsolutVertexID(vertexID);
+					lineElem.addVertex(vertexID);
 				} catch (NumberFormatException nfe) {
 					System.out.println("Parsing Error: Wrong parameter for line");
 				}
@@ -321,16 +324,26 @@ public class Parser {
 		for (int i = 1; i < line.length; i++) {
 			try {
 				int vertexID = Integer.valueOf(line[i]);
-				if (vertexID < 0) {
-					vertexID = vertexCounter[Vertices.VERTEX] + (vertexID + 1);
-				}
+				vertexID = convertRelativToAbsolutVertexID(vertexID);
 				newFace.addVertex(vertexID);
 			} catch (NumberFormatException nfe) {
 				newFace.addVertex(line[i], vertexCounter);
 			}
 		}
-		newFace.setSmoothingGroupe(tempSmoothinGroup);
+		newFace.setSmoothingGroup(tempSmoothinGroup);
 		tempElementsGroup.addElement(newFace);
+	}
+	
+	/**
+	 * Converts a negative/relativ vertex ID to a absolut one.
+	 * @param vertexID the vertex ID, thath should be converted
+	 * @return the converted vertex ID
+	 */
+	private int convertRelativToAbsolutVertexID(int vertexID){
+		if (vertexID < 0) {
+			vertexID = vertexCounter[Vertices.VERTEX] + (vertexID + 1);
+		}
+		return vertexID;
 	}
 
 	/**
