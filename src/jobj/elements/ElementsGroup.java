@@ -45,4 +45,8 @@ public class ElementsGroup{
 	public ArrayList<Element> getElementsList(){
 		return this.faceList;
 	}
+
+	public String getName() {
+		return name;
+	}
 }

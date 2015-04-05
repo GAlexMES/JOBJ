@@ -6,18 +6,26 @@ import jobj.elements.ElementsGroup;
 
 public class Object {
 
-	private ArrayList<ElementsGroup> faceGroupList;
+	private ArrayList<ElementsGroup> elementsGroupList;
 	private String objectName;
 	
 	public Object(){
-		faceGroupList = new ArrayList<>();
+		elementsGroupList = new ArrayList<>();
 	}
 	
-	public void addFaceGroup(ElementsGroup faceGroup){
-		faceGroupList.add(faceGroup);
+	public void addElementsGroup(ElementsGroup faceGroup){
+		elementsGroupList.add(faceGroup);
 	}
 	
 	public void setName(String name){
 		objectName = name;
+	}
+	
+	public String getName(){
+		return objectName;
+	}
+	
+	public ArrayList<ElementsGroup> getElementsGroup(){
+		return this.elementsGroupList;
 	}
 }
