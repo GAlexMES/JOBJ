@@ -6,13 +6,13 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 
-import jobj.elements.Element;
-import jobj.elements.ElementsGroup;
-import jobj.elements.Face;
-import jobj.jobj.JObj;
+import jobj.datamodel.elements.Element;
+import jobj.datamodel.elements.ElementsGroup;
+import jobj.datamodel.elements.Face;
+import jobj.datamodel.jobj.JObj;
+import jobj.datamodel.vertex.Vertex;
+import jobj.datamodel.vertex.Vertices;
 import jobj.parser.Parser;
-import jobj.vertex.Vertex;
-import jobj.vertex.Vertices;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -48,7 +48,7 @@ public class completeFileTest {
 
 	@Test
 	public void testObjects() {
-		ArrayList<jobj.jobj.Object> objects = jobj.getObjects();
+		ArrayList<jobj.datamodel.elements.Object> objects = jobj.getObjects();
 		String[] objectNames = { "multiplePoints", "multipleLines", "multipleFaces", "mixedElements" };
 		for (int i = 0; i < objects.size(); i++) {
 			assertEquals("Wrong object name", objectNames[i], objects.get(i).getName());
@@ -57,7 +57,7 @@ public class completeFileTest {
 
 	@Test
 	public void testGroups() {
-		jobj.jobj.Object obj = jobj.getObjects().get(3);
+		jobj.datamodel.elements.Object obj = jobj.getObjects().get(3);
 		ArrayList<ElementsGroup> elemGroup = obj.getElementsGroup();
 		String[] groupNames = { "points", "lines", "faces" };
 		for (int i = 0; i < elemGroup.size(); i++) {
@@ -68,7 +68,7 @@ public class completeFileTest {
 
 	@Test
 	public void testPoints() {
-		jobj.jobj.Object obj = jobj.getObjects().get(0);
+		jobj.datamodel.elements.Object obj = jobj.getObjects().get(0);
 		ElementsGroup elemGroup = obj.getElementsGroup().get(0);
 		ArrayList<Element> elemList = elemGroup.getElementsList();
 		Integer[] values = { 1, 2, 5 };
@@ -81,7 +81,7 @@ public class completeFileTest {
 
 	@Test
 	public void testLines() {
-		jobj.jobj.Object obj = jobj.getObjects().get(1);
+		jobj.datamodel.elements.Object obj = jobj.getObjects().get(1);
 		ElementsGroup elemGroup = obj.getElementsGroup().get(0);
 		ArrayList<Element> elemList = elemGroup.getElementsList();
 		Integer[] line1 = { 1, 2 };
@@ -99,7 +99,7 @@ public class completeFileTest {
 
 	@Test
 	public void testFaces() {
-		jobj.jobj.Object obj = jobj.getObjects().get(2);
+		jobj.datamodel.elements.Object obj = jobj.getObjects().get(2);
 		ElementsGroup elemGroup = obj.getElementsGroup().get(0);
 		ArrayList<Element> elemList = elemGroup.getElementsList();
 		Integer[] line1 = { 1, 2 };

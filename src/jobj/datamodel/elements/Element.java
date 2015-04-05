@@ -1,8 +1,8 @@
-package jobj.elements;
+package jobj.datamodel.elements;
 
 import java.util.ArrayList;
 
-import jobj.vertex.Vertex;
+import jobj.datamodel.vertex.Vertex;
 
 /**
  * <h1> Element Interface </h1>

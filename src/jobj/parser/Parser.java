@@ -5,13 +5,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import jobj.comments.Comment;
-import jobj.comments.Comments;
-import jobj.elements.*;
-import jobj.jobj.JObj;
-import jobj.jobj.Object;
-import jobj.vertex.Vertex;
-import jobj.vertex.Vertices;
+import jobj.datamodel.comments.Comment;
+import jobj.datamodel.comments.Comments;
+import jobj.datamodel.elements.*;
+import jobj.datamodel.jobj.JObj;
+import jobj.datamodel.vertex.Vertex;
+import jobj.datamodel.vertex.Vertices;
 
 /**
  * <h1>Main Parsing Class</h1>

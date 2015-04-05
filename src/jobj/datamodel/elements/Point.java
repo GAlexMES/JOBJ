@@ -1,4 +1,4 @@
-package jobj.elements;
+package jobj.datamodel.elements;
 
 import java.util.ArrayList;
 

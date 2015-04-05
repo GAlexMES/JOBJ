@@ -1,4 +1,4 @@
-package jobj.vertex;
+package jobj.datamodel.vertex;
 
 import java.util.ArrayList;
 

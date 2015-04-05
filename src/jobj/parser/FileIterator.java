@@ -1,15 +1,15 @@
 package jobj.parser;
 
-import jobj.comments.Comment;
-import jobj.comments.Comments;
-import jobj.elements.ElementsGroup;
-import jobj.elements.Face;
-import jobj.elements.Line;
-import jobj.elements.Point;
-import jobj.jobj.JObj;
-import jobj.jobj.Object;
-import jobj.vertex.Vertex;
-import jobj.vertex.Vertices;
+import jobj.datamodel.comments.Comment;
+import jobj.datamodel.comments.Comments;
+import jobj.datamodel.elements.ElementsGroup;
+import jobj.datamodel.elements.Face;
+import jobj.datamodel.elements.Line;
+import jobj.datamodel.elements.Object;
+import jobj.datamodel.elements.Point;
+import jobj.datamodel.jobj.JObj;
+import jobj.datamodel.vertex.Vertex;
+import jobj.datamodel.vertex.Vertices;
 
 public class FileIterator {
 	

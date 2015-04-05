@@ -1,4 +1,4 @@
-package jobj.vertex;
+package jobj.datamodel.vertex;
 
 /**
  * <h1> Vertex </h1>
