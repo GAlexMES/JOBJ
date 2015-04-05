@@ -1,4 +1,4 @@
-package jobj.vertex;
+package jobj.datamodel.vertex;
 
 /**
  * <h1> Vertex </h1>
@@ -25,5 +25,17 @@ public class Vertex {
 		xCoordinate = x;
 		yCoordinate = y;
 		zCoordinate = z;
+	}
+
+	public Double getxCoordinate() {
+		return xCoordinate;
+	}
+
+	public Double getyCoordinate() {
+		return yCoordinate;
+	}
+
+	public Double getzCoordinate() {
+		return zCoordinate;
 	}
 }

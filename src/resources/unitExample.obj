@@ -1,0 +1,88 @@
+# JOBJ Example File for JUnit Tests
+mtllib /test.mtl
+v 0.5 0.5 0.5
+v 0.5 0.0 0.0
+v 1.5 0.5 1.5
+v -0.5 -0.5 -0.5
+v -0.5 0.5 1.25
+vt 0.5 0.5
+vt 0.5 0.0
+vt 1.5 0.5
+vt -0.5 -0.5
+vt -0.5 0.5
+vn 0.5 0.5 0.5
+vn 0.5 0.0 0.0
+vn 1.5 0.5 1.5
+vn -0.5 -0.5 -0.5
+vn -0.5 0.5 1.25
+vp 0.5 0.5 0.5
+vp 0.5 0.0 0.0
+vp 1.5 0.5 1.5
+vp -0.5 -0.5 -0.5
+vp -0.5 0.5 1.25
+
+o multiplePoints
+p 1
+p 2
+p -1
+
+o multipleLines
+l 1 2
+l 2 3 
+l 1 2 3 4 -1
+
+o multipleFaces
+f 1 2 3
+s 1
+f 1 2 3 -4
+s 2
+f 1//1 2//2 3//3
+s 3
+f 1/2/3 2/3/4 3/4/5
+s 4
+f 1/2 2/3 3/4
+s 5
+f 1/2/3 2/-3/4 -3/-4/5
+s off
+f 1/2 -2/3 3/4
+
+o mixedElements
+usemtl testTexture
+g points
+p -1
+p 2
+g lines
+l 1 2
+l 2 3 
+l 1 2 3 4 5
+g faces
+f 1 2 3
+f 1 2 3 -4
+f 1//1 2//2 3//3
+f -1/-2 1/2 1/3
+
+
+
+# (deg) degree |||
+# (bmat) basis matrix |||
+# (step) step size |||
+# (curv) curve |||
+# (curv2) 2D curve |||
+# (surf) surface |||
+# Free-form curve/surface body statements |
+# (parm) parameter values |||
+# (trim) outer trimming loop |||
+# (hole) inner trimming loop |||
+# (scrv) special curve |||
+# (sp) special point |||
+# (end) end statement ||
+# (con) connect |||
+# (mg) merging group |||
+# (bevel) bevel interpolation |||
+# (c_interp) color interpolation |||
+# (d_interp) dissolve interpolation |||
+# (lod) level of detail |||
+# (shadow_obj) shadow casting |||
+# (trace_obj) ray tracing |||
+# (ctech) curve approximation technique |||
+# (stech) surface approximation technique |||

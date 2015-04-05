@@ -1,4 +1,4 @@
-package jobj.vertex;
+package jobj.datamodel.vertex;
 
 import java.util.ArrayList;
 
@@ -100,5 +100,24 @@ public class Vertices {
 			parameterSpaceVertexList.add(vertex);
 			break;
 		}
+	}
+	
+	/**
+	 * 
+	 * @param vertexType Should be one of the final static ints, defined in this class
+	 * @return the list for the given type. Null, if the type is invalid.
+	 */
+	public ArrayList<Vertex> getVertexList(int vertexType){
+		switch (vertexType) {
+		case VERTEX:
+			return vertexList;
+		case TEXTURE_VERTEX:
+			return textureVertexList;
+		case NORMALS_VERTEX:
+			return normalsVertexList;
+		case PARAMETER_SPACE_VERTEX:
+			return parameterSpaceVertexList;
+		}
+		return null;
 	}
 }

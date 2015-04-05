@@ -1,4 +1,4 @@
-package jobj.elements;
+package jobj.datamodel.elements;
 
 import java.util.ArrayList;
 
@@ -44,5 +44,9 @@ public class ElementsGroup{
 	
 	public ArrayList<Element> getElementsList(){
 		return this.faceList;
+	}
+
+	public String getName() {
+		return name;
 	}
 }
