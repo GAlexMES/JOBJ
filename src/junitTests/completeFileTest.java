@@ -171,6 +171,7 @@ public class completeFileTest {
 	public void checkObjectIterator(){
 		JObjIterator jobjIter = new JObjIterator(jobj);
 		jobjIter.generateView();
+		assertTrue("Something doen't work in the ObjIterator",true);
 	}
 
 	private void checkFaceVertices(Integer[] exceptedValues, ArrayList<Integer> realValues) {

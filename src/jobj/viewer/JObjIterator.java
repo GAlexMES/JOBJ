@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import jobj.datamodel.elements.Element;
 import jobj.datamodel.elements.ElementsGroup;
 import jobj.datamodel.elements.Face;
-import jobj.datamodel.elements.Line;
 import jobj.datamodel.elements.Object;
-import jobj.datamodel.elements.Point;
 import jobj.datamodel.jobj.JObj;
 import jobj.datamodel.vertex.Vertex;
 import jobj.datamodel.vertex.Vertices;
@@ -47,7 +45,6 @@ public class JObjIterator {
 		for(Element elem : elements){
 			int elemType = elem.getType();
 			drawElem = new DrawableElement(elemType);
-			
 			ArrayList<Integer> vertexID = elem.getVertexIDs();
 			elemVertices = vertices.getMultipleIDs(vertexID, Vertices.VERTEX);
 			drawElem.setVertices(elemVertices);
