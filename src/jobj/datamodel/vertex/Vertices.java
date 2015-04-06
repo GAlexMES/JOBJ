@@ -54,13 +54,13 @@ public class Vertices {
 	public Vertex getVertex(Integer id, int vertexType) {
 		switch (vertexType) {
 		case VERTEX:
-			return vertexList.get(id + 1);
+			return vertexList.get(id - 1);
 		case TEXTURE_VERTEX:
-			return textureVertexList.get(id + 1);
+			return textureVertexList.get(id - 1);
 		case NORMALS_VERTEX:
-			return normalsVertexList.get(id + 1);
+			return normalsVertexList.get(id - 1);
 		case PARAMETER_SPACE_VERTEX:
-			return parameterSpaceVertexList.get(id + 1);
+			return parameterSpaceVertexList.get(id - 1);
 		default:
 			return null;
 		}
@@ -119,5 +119,32 @@ public class Vertices {
 			return parameterSpaceVertexList;
 		}
 		return null;
+	}
+	
+	/**
+	 * This method returns the verticies for the given IDs
+	 * @param vertexIDs List of ids
+	 * @param type of the Vertices that should be returned. Should be:
+	 *            <ul>
+	 *            VERTEX
+	 *            </ul>
+	 *            <ul>
+	 *            TEXTURE_VERTEX
+	 *            </ul>
+	 *            <ul>
+	 *            NORMALS_VERTEX
+	 *            </ul>
+	 *            <ul>
+	 *            PARAMETER_SPACE_VERTEX
+	 *            </ul>
+	 * @return
+	 */
+	public ArrayList<Vertex> getMultipleIDs (ArrayList<Integer> vertexIDs, int type){
+		ArrayList<Vertex> retval = new ArrayList<>();
+		for(Integer id : vertexIDs){
+			Vertex tempVertex = getVertex(id,type);
+			retval.add(tempVertex);
+		}
+		return retval;
 	}
 }
