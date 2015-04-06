@@ -11,7 +11,7 @@ import jobj.datamodel.vertex.Vertex;
 import jobj.datamodel.vertex.Vertices;
 
 public class JObjIterator {
-
+	
 	private JObj jobj;
 	
 	public JObjIterator(JObj jobj){
@@ -22,7 +22,7 @@ public class JObjIterator {
 		return this.jobj;
 	}
 
-	public void generateView(){
+	public void render(){
 		ArrayList<Object> objectList = jobj.getObjects();
 		for(Object obj : objectList){
 			handleObject(obj);
@@ -53,10 +53,10 @@ public class JObjIterator {
 				vertexIDs = ((Face)elem).getVertexTextureIDs();
 				ArrayList<Vertex> faceTextureVertices = vertices.getMultipleIDs(vertexIDs, Vertices.TEXTURE_VERTEX);
 				drawElem.setTextureVertices(faceTextureVertices);
+				
 				vertexIDs = ((Face)elem).getVertexNormalIDs();
 				ArrayList<Vertex> faceNormalsVertices = vertices.getMultipleIDs(vertexIDs, Vertices.NORMALS_VERTEX);
 				drawElem.setNormalVertices(faceNormalsVertices);
-				break;
 			}
 			drawElem.draw();
 		}

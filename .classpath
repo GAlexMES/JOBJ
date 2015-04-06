@@ -5,7 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JUnit 4.12"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lwjgl_util.jar"/>
-	<classpathentry kind="lib" path="lwjgl.jar">
+	<classpathentry kind="lib" path="lwjgl.jar" sourcepath="C:/Users/Alexander/.m2/repository/org/lwjgl/lwjgl/lwjgl/2.9.3/lwjgl-2.9.3-sources.jar">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="JOBJ/native"/>
 		</attributes>

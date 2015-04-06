@@ -2,6 +2,8 @@ package jobj.viewer;
 
 import java.util.ArrayList;
 
+import org.lwjgl.opengl.GL11;
+
 import jobj.datamodel.elements.Element;
 import jobj.datamodel.vertex.Vertex;
 
@@ -41,19 +43,40 @@ public class DrawableElement {
 			break;
 		}
 	}
-	
-	private void drawPoint(){
-		System.out.println("Draw Point at :");
-		System.out.println("X: "+ vertices.get(0).getxCoordinate());
-		System.out.println("Y: "+ vertices.get(0).getyCoordinate());
-		System.out.println("Z: "+ vertices.get(0).getzCoordinate());
+
+	private void drawPoint() {
+		Vertex vertex = vertices.get(0);
+		GL11.glBegin(GL11.GL_POINTS);
+		float x = vertex.getxCoordinate().floatValue();
+		float y = vertex.getyCoordinate().floatValue();
+		float z = vertex.getzCoordinate().floatValue();
+		GL11.glVertex3f(x/10,y/10,z/10);
+		GL11.glEnd();
 	}
-	
-	private void drawLine(){
+
+	private void drawLine() {
+		GL11.glBegin(GL11.GL_LINE_STRIP);
+
+		for(Vertex ver : vertices){
+			float x = ver.getxCoordinate().floatValue();
+			float y = ver.getyCoordinate().floatValue();
+			float z = ver.getzCoordinate().floatValue();
+			GL11.glVertex2d(x/10,y/10);
+		}
 		
+		GL11.glEnd();
 	}
-	
-	private void drawFace(){
+
+	private void drawFace() {
+		GL11.glBegin(GL11.GL_POLYGON);
 		
+		for(Vertex ver : vertices){
+			float x = ver.getxCoordinate().floatValue();
+			float y = ver.getyCoordinate().floatValue();
+			float z = ver.getzCoordinate().floatValue();
+			GL11.glVertex3f(x/10,y/10,z/10);
+		}
+
+		GL11.glEnd();
 	}
 }

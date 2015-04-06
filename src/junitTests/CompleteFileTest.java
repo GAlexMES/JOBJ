@@ -20,7 +20,7 @@ import jobj.viewer.Viewer;
 import org.junit.Before;
 import org.junit.Test;
 
-public class completeFileTest {
+public class CompleteFileTest {
 
 	private JObj jobj;
 
@@ -43,7 +43,7 @@ public class completeFileTest {
 		}
 		Double x = -0.5;
 		Double y = 0.5;
-		Double z = 1.25;
+		Double z = 0.85;
 		assertEquals("Wrong vertex", x, vertexList.get(4).getxCoordinate());
 		assertEquals("Wrong vertex", y, vertexList.get(4).getyCoordinate());
 		assertEquals("Wrong vertex", z, vertexList.get(4).getzCoordinate());
@@ -167,13 +167,6 @@ public class completeFileTest {
 		}
 	}
 	
-	@Test
-	public void checkObjectIterator(){
-		JObjIterator jobjIter = new JObjIterator(jobj);
-		jobjIter.generateView();
-		assertTrue("Something doen't work in the ObjIterator",true);
-	}
-
 	private void checkFaceVertices(Integer[] exceptedValues, ArrayList<Integer> realValues) {
 		for (int i = 0; i < exceptedValues.length; i++) {
 			assertEquals("Wrong value in Face!", exceptedValues[i], realValues.get(i));
