@@ -1,6 +1,7 @@
 package junitTests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.net.URL;
@@ -13,6 +14,8 @@ import jobj.datamodel.jobj.JObj;
 import jobj.datamodel.vertex.Vertex;
 import jobj.datamodel.vertex.Vertices;
 import jobj.parser.Parser;
+import jobj.viewer.JObjIterator;
+import jobj.viewer.Viewer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -162,6 +165,12 @@ public class completeFileTest {
 			
 
 		}
+	}
+	
+	@Test
+	public void checkObjectIterator(){
+		JObjIterator jobjIter = new JObjIterator(jobj);
+		jobjIter.generateView();
 	}
 
 	private void checkFaceVertices(Integer[] exceptedValues, ArrayList<Integer> realValues) {

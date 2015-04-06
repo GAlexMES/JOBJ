@@ -41,29 +41,27 @@ public class JObjIterator {
 	private void handleElementsGroup(ElementsGroup elemGroup){
 		ArrayList<Element> elements = elemGroup.getElementsList();
 		ArrayList<Integer> vertexIDs;
+		ArrayList<Vertex> elemVertices;
 		Vertices vertices = jobj.getVerticies();
+		DrawableElement drawElem;
 		for(Element elem : elements){
-			switch(elem.getType()){
-			case Element.POINT:
-				int vertexID = ((Point)elem).getVertex();
-				Vertex pointVertex = vertices.getVertex(vertexID, Vertices.VERTEX);
-				drawPoint(pointVertex);
-				break;
-			case Element.LINE:
-				vertexIDs = ((Line)elem).getVertexIDs();
-				ArrayList<Vertex> lineVertices = vertices.getMultipleIDs(vertexIDs,  Vertices.VERTEX);
-				drawLine(lineVertices);
-				break;
-			case Element.FACE:
-				vertexIDs = ((Face)elem).getVertexIDs();
-				ArrayList<Vertex> faceVertices = vertices.getMultipleIDs(vertexIDs, Vertices.VERTEX);
+			int elemType = elem.getType();
+			drawElem = new DrawableElement(elemType);
+			
+			ArrayList<Integer> vertexID = elem.getVertexIDs();
+			elemVertices = vertices.getMultipleIDs(vertexID, Vertices.VERTEX);
+			drawElem.setVertices(elemVertices);
+			
+			if(elemType == Element.FACE){
 				vertexIDs = ((Face)elem).getVertexTextureIDs();
 				ArrayList<Vertex> faceTextureVertices = vertices.getMultipleIDs(vertexIDs, Vertices.TEXTURE_VERTEX);
+				drawElem.setTextureVertices(faceTextureVertices);
 				vertexIDs = ((Face)elem).getVertexNormalIDs();
 				ArrayList<Vertex> faceNormalsVertices = vertices.getMultipleIDs(vertexIDs, Vertices.NORMALS_VERTEX);
-				drawFace(faceVertices, faceTextureVertices, faceNormalsVertices);
+				drawElem.setNormalVertices(faceNormalsVertices);
 				break;
 			}
+			drawElem.draw();
 		}
 	}
 	
