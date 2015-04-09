@@ -3,11 +3,23 @@ package jobj.viewer;
 import org.lwjgl.util.vector.Vector3f;
 import static org.lwjgl.opengl.GL11.*;
  
+
+/**
+ * <h1> Camera COntroller </h1>
+ * @author Alexander Brennecke
+ *
+ */
 public class CameraController {
     private Vector3f position = null;
     private float yaw = 0.0f;
     private float pitch = 0.0f;
      
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     * @param z
+     */
     public CameraController(float x, float y, float z){
         position = new Vector3f(x, y, z);
     }

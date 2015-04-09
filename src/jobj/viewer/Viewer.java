@@ -42,17 +42,20 @@ public class Viewer extends Frame {
 	float mouseSensitivity = 0.05f;
 	float movementSpeed = 10.0f;
 
+	/**
+	 * Constructor
+	 * @param jobj the JObj object, that should be displayed
+	 */
 	public Viewer(JObj jobj) {
 		this.jobj = jobj;
 		jobjIterator = new JObjIterator(jobj);
 		init();
 	}
 
-	public void rotate(float xAngle, float yAngle) {
-		glRotatef(xAngle, 1.0f, 0.0f, 0.0f);
-		glRotatef(yAngle, 0.0f, 1.0f, 0.0f);
-	}
 
+	/**
+	 * Initialisation
+	 */
 	private void init() {
 		this.setLayout(new BorderLayout());
 		final Canvas canvas = new Canvas();
@@ -124,6 +127,9 @@ public class Viewer extends Frame {
 		}
 	}
 
+	/**
+	 * Updates the camera position for mouse controlling.
+	 */
 	private void updatePosition() {
 		time = Sys.getTime();
 		dt = (time - lastTime) / 1000.0f;
