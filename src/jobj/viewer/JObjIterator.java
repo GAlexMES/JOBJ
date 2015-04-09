@@ -60,27 +60,9 @@ public class JObjIterator {
 	 */
 	private void handleElementsGroup(ElementsGroup elemGroup){
 		ArrayList<Element> elements = elemGroup.getElementsList();
-		ArrayList<Integer> vertexIDs;
-		ArrayList<Vertex> elemVertices;
 		Vertices vertices = jobj.getVerticies();
-		DrawableElement drawElem;
 		for(Element elem : elements){
-			int elemType = elem.getType();
-			drawElem = new DrawableElement(elemType);
-			ArrayList<Integer> vertexID = elem.getVertexIDs();
-			elemVertices = vertices.getMultipleIDs(vertexID, Vertices.VERTEX);
-			drawElem.setVertices(elemVertices);
-			
-			if(elemType == Element.FACE){
-				vertexIDs = ((Face)elem).getVertexTextureIDs();
-				ArrayList<Vertex> faceTextureVertices = vertices.getMultipleIDs(vertexIDs, Vertices.TEXTURE_VERTEX);
-				drawElem.setTextureVertices(faceTextureVertices);
-				
-				vertexIDs = ((Face)elem).getVertexNormalIDs();
-				ArrayList<Vertex> faceNormalsVertices = vertices.getMultipleIDs(vertexIDs, Vertices.NORMALS_VERTEX);
-				drawElem.setNormalVertices(faceNormalsVertices);
-			}
-			drawElem.draw();
+			elem.draw(vertices);
 		}
 	}
 	

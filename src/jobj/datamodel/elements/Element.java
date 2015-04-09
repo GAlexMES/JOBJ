@@ -3,6 +3,7 @@ package jobj.datamodel.elements;
 import java.util.ArrayList;
 
 import jobj.datamodel.vertex.Vertex;
+import jobj.datamodel.vertex.Vertices;
 
 /**
  * <h1> Element Interface </h1>
@@ -26,6 +27,6 @@ public interface Element {
 	
 	void addVertex(Integer vertexID);
 	ArrayList<Integer> getVertexIDs();
-	
+	void draw(Vertices ver);
 	int getType();
 }
